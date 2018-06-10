@@ -1,0 +1,62 @@
+/ = form_for @user do |f|
+/   - if @user.errors.any?
+/     #error_explanation
+/       h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+/       ul
+/         - @user.errors.full_messages.each do |message|
+/           li = message
+
+/   .field
+/     = f.label :first_name
+/     = f.text_field :first_name
+/   .field
+/     = f.label :last_name
+/     = f.text_field :last_name
+/   .field
+/     = f.label :email
+/     = f.text_field :email
+/   .field
+/     = f.label :birth_date
+/     = f.date_select :birth_date
+/   .field
+/     = f.label :phone
+/     = f.text_field :phone
+/   ul
+/     = f.simple_fields_for :address do |address|
+/       = render :partial => 'shared/address/form', :locals => {:f => address }
+/   = f.fields_for :company do |company_form|
+/     .field
+/       = company_form.label :name
+/       = company_form.text_field :name
+/       ul
+/         = f.simple_fields_for :address do |company_address|
+/           = render :partial => 'shared/address/form', :locals => {:company_form => company_address }
+/   .actions = f.submit
+= simple_form_for @user, wrapper: :vertical_form do |f|
+  - if @user.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      ul
+        - @user.errors.full_messages.each do |message|
+          li = message
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :email
+  = f.input :birth_date, include_blank: true
+  = f.input :phone
+
+  Strong Address 
+  ul 
+    = f.simple_fields_for :address do |address|
+      = render :partial => 'shared/address/form', :locals => {:f => address }
+  Strong Company
+  ul
+    = f.simple_fields_for :company do |company_form|
+      = company_form.input :name 
+      = company_form.simple_fields_for :address do |company_address|
+        = company_address.input :street, required: false
+        = company_address.input :city, required: false
+        = company_address.input :zip_code, required: false
+        = company_address.input :country, required: false
+  = f.submit
+  

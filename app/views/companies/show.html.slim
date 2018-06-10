@@ -1,0 +1,38 @@
+
+=> link_to 'Edit', edit_company_path(@company)
+'|
+=< link_to 'Back', companies_path
+
+
+p
+  strong Company: 
+  = @company.name
+p
+  - unless @company.address.blank?
+    strong Address: 
+    ul
+      li 
+        strong Street: 
+        = @company.address.street
+      li 
+        strong City: 
+        = @company.address.city
+      li 
+        strong zip-code: 
+        = @company.address.zip_code
+      li
+        strong Country:   
+        = @company.address.country
+
+p
+  strong Employees: 
+  ul
+    - @company.employees.each do |emp|
+      li
+        p
+          = emp.first_name
+          = " "
+          = emp.last_name
+        p 
+          = emp.email
+        hr
