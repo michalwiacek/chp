@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2018_06_07_091728) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
-    t.date "birth_date"
+    t.date "date_of_birth"
     t.string "phone"
     t.integer "address_id"
     t.integer "company_id"

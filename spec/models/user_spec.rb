@@ -40,7 +40,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'is valid without birth date' do
-    user5 = build(:user, email: "abc@abc.em", birth_date: nil)
+    user5 = build(:user, email: "abc@abc.em", date_of_birth: nil)
     expect(user5).to be_valid
   end
 

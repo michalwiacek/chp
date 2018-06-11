@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :first_name, null: false
       t.string :last_name, null: false
       t.string :email, null: false, index: true
-      t.date :birth_date
+      t.date :date_of_birth
       t.string :phone
       t.references :address, foreign_key: true
       t.references :company, foreign_key: true

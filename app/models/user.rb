@@ -8,7 +8,7 @@ class User < ApplicationRecord
     too_long: '%{count} characters is the maximum allowed' }
   validates :email, presence: true, format: /\A.+@.+\..+\z/, uniqueness: true
   validates :phone, numericality: true, allow_blank: true
-  validate :birth_date_cannot_be_in_the_future
+  validate :date_of_birth_cannot_be_in_the_future
 
   def company_attributes=(company_attributes)
     self.company = Company.find_or_create_by(name: company_attributes[:name])
@@ -17,9 +17,9 @@ class User < ApplicationRecord
     end
   end
 
-  def birth_date_cannot_be_in_the_future
-    if birth_date.present? && birth_date > Date.today
-      errors.add(:birth_date, "can't be in the future")
+  def date_of_birth_cannot_be_in_the_future
+    if date_of_birth.present? && date_of_birth > Date.today
+      errors.add(:date_of_birth, "can't be in the future")
     end
   end
 end
