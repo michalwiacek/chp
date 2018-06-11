@@ -4,6 +4,6 @@ class Company < ApplicationRecord
   has_many :employees, class_name: "User"
   accepts_nested_attributes_for :address
 
-  validates :name, length: { maximum: 200,
+  validates :name, presence: true, length: { maximum: 200,
     too_long: '%{count} characters is the maximum allowed' }
 end

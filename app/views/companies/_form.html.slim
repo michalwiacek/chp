@@ -1,4 +1,4 @@
-= form_for @company do |f|
+= simple_form_for @company do |f|
   - if @company.errors.any?
     #error_explanation
       h2 = "#{pluralize(@company.errors.count, "error")} prohibited this company from being saved:"
@@ -6,10 +6,9 @@
         - @company.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :name
-    = f.text_field :name
+  .input
+    = f.input :name
   ul
     = f.simple_fields_for :address do |address|
       = render :partial => 'shared/address/form', :locals => {:f => address }
-  .actions = f.submit
+  = f.submit :class => "btn btn-success"

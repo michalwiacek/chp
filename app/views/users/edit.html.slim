@@ -1,8 +1,8 @@
-h1 Editing user
-
-== render 'form'
-
-=> link_to 'Show', @user
-'|
-=< link_to 'Back', users_path
+.container
+  h1 Editing user
+  .col-5
+    == render 'form'
+  .btn-group.d-flex.justify-content-center
+    => link_to 'Show', @user, class: "btn btn-dark"
+    =< link_to 'Back', users_path, class: "btn btn-dark"
 

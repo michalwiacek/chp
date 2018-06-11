@@ -1,32 +1,34 @@
-h1 Listing companies
-
-table
-  thead
-    tr
-      th Company name
-      th City
-      th Employees
-      th 
-      th 
-      th 
-      th 
-      th 
-      th 
-      th 
-
-  tbody
-    - @companies.each do |company|
+.container-fluid
+  h1 List of all companies
+  table [class="table"]
+    thead [class="thead-dark"]
       tr
-        td = company.name
-        - unless company.address.blank?
-          td = company.address.city
-        - else
-          td = " "
-        td = company.employees.count
-        td = link_to 'Show', company
-        td = link_to 'Edit', edit_company_path(company)
-        td = link_to 'Destroy', company, data: { confirm: 'Are you sure?' }, method: :delete
+        th Company name
+        th Country
+        th City
+        th Employees
+        th 
+        th 
+        th 
 
-br
+    tbody
+      - @companies.each do |company|
+        tr
+          td = company.name
+          - unless company.address.blank?
+            td = company.address.country
+            td = company.address.city
+          - else
+            td = " "
+            td = " "
+          td = company.employees.count
+          td
+            = link_to 'Show', company, class: "btn btn-outline-primary"
+          td
+            = link_to 'Edit', edit_company_path(company), class: "btn btn-outline-warning"
+          td
+            = link_to 'Destroy', company, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-outline-danger"
 
-= link_to 'New Company', new_company_path
+  br
+  .btn-group.d-flex.justify-content-center
+    = link_to 'New Company', new_company_path, class: "btn btn-dark"

@@ -1,38 +1,44 @@
-h1 Listing users
-table
-  thead
-    tr
-      th First name
-      th Last name
-      th Email
-      th Birth date
-      th Phone number
-      th Street
-      th City
-      th Zip Code
-      th Country
-      th Company
-
-  tbody
-    - @users.each do |user|
+.container-fluid
+  h1 List of users 
+  table [class="table"]
+    thead [class="thead-dark"]
       tr
-        td = user.first_name
-        td = user.last_name
-        td = user.email
-        td = user.birth_date
-        td = user.phone
-        td = user.address.street
-        td = user.address.city
-        td = user.address.zip_code
-        td = user.address.country
-        - if !user.company.blank? 
-          td = user.company.name
-        - else
+        th [scope="col"] First name
+        th [scope="col"] Last name
+        th [scope="col"] Email
+        th [scope="col"] Birth date
+        th [scope="col"] Phone number
+        th [scope="col"] Street
+        th [scope="col"] City
+        th [scope="col"] Zip Code
+        th [scope="col"] Country
+        th [scope="col"] Company
+        th 
+        th
+        th
+    tbody
+      - @users.each do |user|
+        tr
+          td = user.first_name
+          td = user.last_name
+          td = user.email
+          td = user.birth_date
+          td = user.phone
+          td = user.address.street
+          td = user.address.city
+          td = user.address.zip_code
+          td = user.address.country
+          - if !user.company.blank? 
+            td = user.company.name
+          - else
+            td 
           td 
-        td = link_to 'Show', user
-        td = link_to 'Edit', edit_user_path(user)
-        td = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
+            = link_to 'Show', user, class: "btn btn-outline-primary"
+          td 
+            = link_to 'Edit', edit_user_path(user), class: "btn btn-outline-warning"
+          td
+            = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-outline-danger"
 
-br
-
-= link_to 'New User', new_user_path
+  br
+  .btn-group.d-flex.justify-content-center
+    = link_to 'New User', new_user_path, class: "btn btn-dark"

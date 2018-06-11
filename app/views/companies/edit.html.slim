@@ -1,8 +1,8 @@
-h1 Company#edit
-
-== render 'form'
-
-=> link_to 'Show', @company
-'|
-=< link_to 'Back', companies_path
+.container
+  h1 Edit
+  .col-5
+    == render 'form'
+  .btn-group.d-flex.justify-content-center
+    => link_to 'Show', @company, class: "btn btn-dark"
+    =< link_to 'Back', companies_path, class: "btn btn-dark"
 
