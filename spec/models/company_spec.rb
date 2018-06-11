@@ -4,6 +4,9 @@ RSpec.describe Company, type: :model do
   before(:all) do
     @company1 = create(:company)
   end
+  after(:all) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
   it 'is valid with a name' do
     expect(@company1).to be_valid
   end

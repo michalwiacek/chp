@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  require 'pry'
   has_one :address, as: :addressable
   belongs_to :company, optional: true
   accepts_nested_attributes_for :address

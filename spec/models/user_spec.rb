@@ -4,6 +4,9 @@ RSpec.describe User, type: :model do
   before(:all) do
     @user1 = build(:user)
   end
+  after(:all) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
 
   it 'is valid with valid attributes' do
     expect(@user1).to be_valid
@@ -12,6 +15,10 @@ RSpec.describe User, type: :model do
   it 'has a uniqe email' do
     user2 = build(:user, email: "bob@gmail.com")
     expect(user2).to be_valid
+  end
+  it 'is now valid email' do
+    user2 = build(:user, email: "notvalidemail")
+    expect(user2).not_to be_valid
   end
 
   it 'is not valid without email' do
@@ -44,9 +51,13 @@ RSpec.describe User, type: :model do
     expect(user5).to be_valid
   end
 
+  it 'is not valid with future birth date' do
+    user5 = build(:user, email: "abc@abc.em", date_of_birth: Date.today + 1.day)
+    expect(user5).not_to be_valid
+  end
+
   it 'is valid without phone number' do
     user5 = build(:user, email: "abc@abc.em", phone: nil)
     expect(user5).to be_valid
   end
-
 end
